@@ -54,18 +54,7 @@ async function processS3Record(record) {
     const fileName = path.basename(key, fileExtension);
     const cleanKey = `clean/${fileName}.png`;
     
-    // Vérifier si le fichier clean existe déjà
-    try {
-        await s3.headObject({ Bucket: bucket, Key: cleanKey }).promise();
-        console.log(`⏭️ Fichier déjà traité: ${cleanKey}`);
-        return;
-    } catch (headError) {
-        if (headError.code !== 'NotFound') {
-            console.error('❌ Erreur lors de la vérification du fichier clean:', headError);
-            throw headError;
-        }
-        // Le fichier n'existe pas, on peut continuer
-    }
+    console.log(`🎯 Traitement de: ${key} -> ${cleanKey}`);
     
     console.log('📖 Lecture du fichier depuis S3...');
     
