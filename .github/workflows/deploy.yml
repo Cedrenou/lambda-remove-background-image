@@ -31,7 +31,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ secrets.AWS_REGION }}
+        aws-region: 'eu-west-3'
         
     - name: Deploy to AWS Lambda
       run: |
@@ -72,5 +72,5 @@ jobs:
             --principal s3.amazonaws.com \
             --statement-id s3-trigger \
             --action lambda:InvokeFunction \
-            --source-arn arn:aws:s3:::${{ secrets.S3_BUCKET_NAME }} || true
+            --source-arn arn:aws:s3:::sunset-s3 || true
         fi 
