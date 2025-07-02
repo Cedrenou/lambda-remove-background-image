@@ -1,0 +1,1 @@
+# lambda-remove-background-image
