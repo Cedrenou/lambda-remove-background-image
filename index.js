@@ -74,7 +74,7 @@ async function processS3Record(record) {
     }
     
     // Étape 2: Appeler l'API PhotoRoom
-    console.log('🎨 Appel de l\'API PhotoRoom pour supprimer l\'arrière-plan...');
+    console.log('🎨 Appel de l\'API PhotoRoom pour supprimer l\'arrière-plan avec fond blanc...');
     
     let processedImageData;
     try {
@@ -87,6 +87,9 @@ async function processS3Record(record) {
         formDataBody += `--${boundary}\r\n`;
         formDataBody += `Content-Disposition: form-data; name="output_format"\r\n\r\n`;
         formDataBody += `png\r\n`;
+        formDataBody += `--${boundary}\r\n`;
+        formDataBody += `Content-Disposition: form-data; name="bg_color"\r\n\r\n`;
+        formDataBody += `white\r\n`;
         formDataBody += `--${boundary}\r\n`;
         formDataBody += `Content-Disposition: form-data; name="image_file"; filename="${fileName}"\r\n`;
         formDataBody += `Content-Type: image/${fileExtension.substring(1)}\r\n\r\n`;
