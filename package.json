@@ -1,0 +1,26 @@
+{
+  "name": "lambda-remove-background-image",
+  "version": "1.0.0",
+  "description": "AWS Lambda pour supprimer l'arrière-plan des images avec PhotoRoom API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1691.0",
+    "axios": "^1.6.0"
+  },
+  "engines": {
+    "node": "18.x"
+  },
+  "keywords": [
+    "aws",
+    "lambda",
+    "s3",
+    "image",
+    "background-removal",
+    "photoroom"
+  ],
+  "author": "",
+  "license": "ISC"
+} 
