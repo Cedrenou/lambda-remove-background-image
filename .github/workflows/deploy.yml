@@ -18,10 +18,9 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-        cache: 'npm'
         
     - name: Install dependencies
-      run: npm i
+      run: npm install
       
     - name: Create deployment package
       run: |
@@ -64,12 +63,12 @@ jobs:
     - name: Setup S3 trigger (if needed)
       run: |
         # Vérifier si le trigger existe déjà
-        if ! aws lambda list-event-source-mappings --function-name remove-background-image --query 'EventSourceMappings[0]' --output text | grep -q 'None'; then
+        if ! aws lambda list-event-source-mappings --function-name lambda-sunset-remove-background-image --query 'EventSourceMappings[0]' --output text | grep -q 'None'; then
           echo "Trigger S3 déjà configuré"
         else
           echo "Configuration du trigger S3..."
           aws lambda add-permission \
-            --function-name remove-background-image \
+            --function-name lambda-sunset-remove-background-image \
             --principal s3.amazonaws.com \
             --statement-id s3-trigger \
             --action lambda:InvokeFunction \
