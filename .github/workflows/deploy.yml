@@ -49,16 +49,12 @@ jobs:
             --role ${{ secrets.AWS_LAMBDA_ROLE_ARN }} \
             --handler index.handler \
             --zip-file fileb://lambda-remove-background.zip \
-            --timeout 60 \
-            --memory-size 512 \
-            --environment Variables="{PHOTOROOM_API_KEY=${{ secrets.PHOTOROOM_API_KEY }}}"
         fi
         
     - name: Update Lambda environment variables
       run: |
         aws lambda update-function-configuration \
           --function-name lambda-sunset-remove-background-image \
-          --environment Variables="{PHOTOROOM_API_KEY=${{ secrets.PHOTOROOM_API_KEY }}}"
           
     - name: Setup S3 trigger (if needed)
       run: |
